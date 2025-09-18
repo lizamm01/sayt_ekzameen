@@ -1,0 +1,287 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MY PROFILE</title>
+
+
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+
+  <link rel="stylesheet" href="{% static 'css/templatemo-electric-xtra.css' %}">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Rajdhani', sans-serif;
+      background: #0d0d0d;
+      color: #fff;
+      scroll-behavior: smooth;
+    }
+
+    nav {
+      background: #111;
+      padding: 15px 40px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+
+    .nav-links a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: #ffcc00;
+    }
+
+    section {
+      padding: 100px 50px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Hero */
+    .hero h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 40px;
+      margin: 10px 0;
+    }
+
+    .socials {
+      margin-top: 20px;
+    }
+
+    .socials a {
+      display: inline-block;
+      margin-right: 15px;
+      padding: 8px 16px;
+      background: #222;
+      border-radius: 6px;
+      text-decoration: none;
+      color: #ffcc00;
+      transition: 0.3s;
+    }
+
+    .socials a:hover {
+      background: #ffcc00;
+      color: #111;
+    }
+
+    /* Features / Projects */
+    .features-container {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .feature-box {
+      background: #1a1a1a;
+      padding: 20px;
+      border-radius: 10px;
+      width: 250px;
+      text-align: center;
+      transition: transform 0.3s;
+    }
+
+    .feature-box:hover {
+      transform: translateY(-5px);
+    }
+
+    .feature-box a {
+      color: #ffcc00;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    /* Skills */
+    .skills {
+      text-align: center;
+      margin-top: 50px;
+    }
+
+    .chip {
+      display: inline-block;
+      background: #222;
+      color: #ffcc00;
+      padding: 8px 14px;
+      margin: 5px;
+      border-radius: 20px;
+      font-weight: 500;
+    }
+
+    /* About */
+    .about-container {
+      max-width: 700px;
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 10px 20px;
+      border-radius: 6px;
+      background: #ffcc00;
+      color: #111;
+      font-weight: bold;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      background: #ffaa00;
+      color: #000;
+    }
+
+    /* Contact */
+    .contact-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+      justify-content: center;
+    }
+
+    .contact-form, .contact-info {
+      background: #1a1a1a;
+      padding: 20px;
+      border-radius: 10px;
+      width: 300px;
+    }
+
+    input, textarea {
+      width: 100%;
+      margin: 8px 0;
+      padding: 10px;
+      border: none;
+      border-radius: 6px;
+    }
+
+    .submit-btn {
+      background: #ffcc00;
+      border: none;
+      padding: 10px 20px;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 6px;
+      transition: 0.3s;
+    }
+
+    .submit-btn:hover {
+      background: #ffaa00;
+    }
+
+    h2.section-title {
+      margin-bottom: 30px;
+      font-size: 32px;
+      text-transform: uppercase;
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="#home" class="logo-link">Profile</a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#home" class="nav-link">Home</a></li>
+      <li><a href="#project" class="nav-link">Project</a></li>
+      <li><a href="#about" class="nav-link">About Me</a></li>
+      <li><a href="#contact" class="nav-link">Contact</a></li>
+    </ul>
+  </nav>
+
+
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <h1>Salom Man</h1>
+      <h1>{{ profile.fullname }}</h1>
+      <h2>{{ profile.profession }}</h2>
+      <p><b>Email:</b> {{ profile.email }}</p>
+      <p><b>Joylashuv:</b> {{ profile.location }}</p>
+      <p><b>Telefon:</b> {{ profile.phone }}</p>
+    </div>
+    <div class="socials">
+      <h1>Men bilan bog'lanish</h1>
+      {% for link in social_links %}
+        <a href="{{ link.url }}">{{ link.platform }}</a>
+      {% endfor %}
+    </div>
+  </section>
+
+
+  <section class="features" id="project">
+    <h2 class="section-title">My Projects</h2>
+    <div class="features-container">
+      {% for project in projects %}
+      <div class="feature-box">
+        <h3>{{ project.title }}</h3>
+        <p>{{ project.description }}</p>
+        {% if project.link %}
+          <a href="{{ project.link }}">Korish</a>
+        {% endif %}
+      </div>
+      {% endfor %}
+    </div>
+    <div class="skills">
+      <h3>Texnologiyalar</h3>
+      {% for tech in technologies %}
+        <span class="chip">{{ tech.name }}</span>
+      {% endfor %}
+    </div>
+  </section>
+
+
+  <section class="about" id="about">
+    <h2 class="section-title">About Me</h2>
+    <div class="about-container">
+      <p>{{ profile.about }}</p>
+      <p><b>Tajriba:</b> {{ profile.experience }}</p>
+    </div>
+    {% if profile.resume %}
+      <a class="btn ghost" href="{{ profile.resume.url }}" download>Rezyume yuklab olish</a>
+    {% endif %}
+  </section>
+
+
+  <section class="contact" id="contact">
+    <h2 class="section-title">Get In Touch</h2>
+    <div class="contact-container">
+      <div class="contact-form">
+        <form method="post" class="contact-form">
+          {% csrf_token %}
+          <input type="text" name="name" placeholder="Ismingiz" required>
+          <input type="email" name="email" placeholder="Email" required>
+          <textarea name="message" placeholder="Xabar" rows="4" required></textarea>
+          <button type="submit" class="submit-btn">Yuborish</button>
+        </form>
+        <p class="footer-note">Telefon: {{ profile.phone }}</p>
+      </div>
+      <div class="contact-info">
+        <h3>Contact Info</h3>
+        <p><b>Email:</b> {{ profile.email }}</p>
+        <p><b>Phone:</b> {{ profile.phone }}</p>
+        <p><b>Location:</b> {{ profile.location }}</p>
+      </div>
+    </div>
+  </section>
+</body>
+</html>
