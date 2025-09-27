@@ -25,9 +25,7 @@ SECRET_KEY = 'django-insecure-t9db@d4evpusy51behn5@2@b13#*hg3zs3z3f(h*1ojs=2n1v-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
-
+ALLOWED_HOSTS = ['lizamm.pythonanywhere.com']
 # Application definition
 
 INSTALLED_APPS = [
@@ -126,3 +124,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = '<lizamm.0101@gmail.com>'
+EMAIL_HOST_PASSWORD = 'xjon cwcl onuc jtnm'

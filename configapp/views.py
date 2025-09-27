@@ -25,3 +25,8 @@ def index(request):
         "social_links": social_links,
     }
     return render(request, "index.html", context)
+
+
+
+
+#email student teacher
